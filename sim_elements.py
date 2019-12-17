@@ -19,32 +19,32 @@ def pull_from_sim_info(key):
 
 class Clock:
     def __init__(self, max_time, start_time=0, interval=1, mode='forward'):
-        self.__max_time = max_time
-        self.__start_time = self.__time = start_time
-        self.__interval = interval
-        self.__mode = mode
+        self._max_time = max_time
+        self._start_time = self._time = start_time
+        self._interval = interval
+        self._mode = mode
         
     def get_time(self):
-        return self.__time
+        return self._time
     
     def tick(self):
-        self.__time += self.__interval
+        self._time += self._interval
         
     def switch_mode(self):
-        if self.__mode == 'forward':
-            self.__time = self.__max_time
-            self.__mode = 'backward'
-            self.__interval *= -1
+        if self._mode == 'forward':
+            self._time = self._max_time
+            self._mode = 'backward'
+            self._interval *= -1
         else:
-            self.__time = self.__start_time
-            self.__mode = 'forward'
-            self.__interval *= -1
+            self._time = self._start_time
+            self._mode = 'forward'
+            self._interval *= -1
     
     def reset(self):
-        self.__time = self.__start_time
-        if self.__mode == 'backward':
-            self.__interval *= -1
-        self.__mode = 'forward'
+        self._time = self._start_time
+        if self._mode == 'backward':
+            self._interval = 1
+        self._mode = 'forward'
         
 class Controller:
     def __init__(self, link_info, T, Tm, models, demands, cost_params, dtchoices=None, srates=None):
