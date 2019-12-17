@@ -15,13 +15,6 @@ class F3Link(Link):
         
         self.reset()
     
-    def get_time(self):
-        return pull_from_sim_info('clock').get_time()
-    
-    def connect_nodes(self, upnode, downnode):
-        self.upnode = upnode
-        self.downnode = downnode
-    
     def init_cost_computation(self):
         self.determine_a()
         
